@@ -7,8 +7,16 @@
     "build": "tsc",
     "prestart": "npm run build",
     "start": "electron main.js",
+    "pack": "build --dir",
+    "dist": "build",
     "dist-win32-x64": "npm run build && electron-packager . --out=dist --platform=win32 --arch=x64 --overwrite",
     "dist-all": "npm run build && electron-packager . --out=dist --platform=all --arch=all --overwrite"
+  },
+  "build": {
+    "appId": "8FFD1DBA-9C8C-4148-A843-89D59C267F27",
+    "mac": {
+      "category": "your.app.category.type"
+    }
   },
   "repository": {
     "type": "git",
@@ -25,10 +33,11 @@
     "@types/electron": "^1.4.35",
     "@types/node": "^7.0.12",
     "@types/node-notifier": "0.0.28",
+    "electron": "^1.6.2",
+    "electron-builder": "^16.6.1",
     "electron-packager": "^8.6.0"
   },
   "dependencies": {
-    "electron": "^1.6.2",    
     "node-notifier": "^5.1.2"
   }
 }

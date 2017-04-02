@@ -18,23 +18,33 @@ var createNotification = function(title:string, options:NotificationOptions) {
 
 app.on('ready', function(){
   mainWindow = new BrowserWindow({show: false});
+  mainWindow.loadURL('file://' + __dirname + '/window.html');
   appIcon = new Tray(iconPath);
   var contextMenu = Menu.buildFromTemplate([
     {
-      label: 'Bilge Adam Portal',
+      label: 'Bilge Adam Bilgilendirme Merkezi',
       icon: iconPath
     },
     {
       label: 'Duyuru',
       click: function() {
         let options: NotificationOptions = {body: "Sistem ayarları güncellemesi başlatılacaktır!"};
-        createNotification("Bilge Adam Duyuru", options);
+        createNotification("Bilge Adam Bilgilendirme", options);
+      }
+    },
+    {
+      label: 'Aç',
+      click: function() {
+        mainWindow.show();
       }
     },
     { 
-      label: 'Kapat'
+      label: 'Kapat',
+      click: function() {
+        mainWindow.hide();
+      }
     }
   ]);
-  appIcon.setToolTip('Bilge Adam Duyuru');
+  appIcon.setToolTip('Bilge Adam Bilgilendirme');
   appIcon.setContextMenu(contextMenu);
 });

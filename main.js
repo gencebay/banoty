@@ -14,24 +14,34 @@ var createNotification = function (title, options) {
 };
 electron_1.app.on('ready', function () {
     mainWindow = new electron_1.BrowserWindow({ show: false });
+    mainWindow.loadURL('file://' + __dirname + '/window.html');
     appIcon = new electron_1.Tray(iconPath);
     var contextMenu = electron_1.Menu.buildFromTemplate([
         {
-            label: 'Bilge Adam Portal',
+            label: 'Bilge Adam Bilgilendirme Merkezi',
             icon: iconPath
         },
         {
             label: 'Duyuru',
             click: function () {
                 let options = { body: "Sistem ayarları güncellemesi başlatılacaktır!" };
-                createNotification("Bilge Adam Duyuru", options);
+                createNotification("Bilge Adam Bilgilendirme", options);
             }
         },
         {
-            label: 'Kapat'
+            label: 'Aç',
+            click: function () {
+                mainWindow.show();
+            }
+        },
+        {
+            label: 'Kapat',
+            click: function () {
+                mainWindow.hide();
+            }
         }
     ]);
-    appIcon.setToolTip('Bilge Adam Duyuru');
+    appIcon.setToolTip('Bilge Adam Bilgilendirme');
     appIcon.setContextMenu(contextMenu);
 });
 //# sourceMappingURL=main.js.map
