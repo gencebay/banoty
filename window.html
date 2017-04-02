@@ -191,7 +191,9 @@
                                 if (event.data) {
 
                                     var context = JSON.parse(event.data);
-                                    new Notification(context.Value.Title, {body: context.Value.Message});
+                                    if(context && context.Value && context.Value.Title) {
+                                        new Notification(context.Value.Title, {body: context.Value.Message});
+                                    }                                    
 
                                     console.log(vm.connectionId());
                                     if (context && context.Command == WebSocketCommands.Handshake) {
